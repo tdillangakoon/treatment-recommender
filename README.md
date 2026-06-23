@@ -205,5 +205,5 @@ Four visuals built on simulated usage data (150 patients, ~130 ratings):
 
 ## Author
 
-Thilijana — undergraduate IT student  
+Thilijana Illangakoon - Undergraduate Data Science student  
 [GitHub](https://github.com/tdillangakoon)
