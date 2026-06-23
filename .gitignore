@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+treatments.db
+app/static/leaves.jpg
