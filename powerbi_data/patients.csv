@@ -1,0 +1,154 @@
+id,age,gender,fever,cough,fatigue,difficulty_breathing,blood_pressure,cholesterol_level,predicted_category,created_at
+1,30,Female,1,1,1,1,Normal,Normal,Respiratory,2026-06-21 06:02:07
+2,67,Male,1,1,0,0,High,High,Cardiovascular,2026-06-21 06:07:14
+3,22,Female,1,1,0,0,Normal,Normal,Respiratory,2026-06-21 06:08:14
+4,23,Male,0,0,1,0,Normal,Normal,Cancer,2026-06-21 06:10:57
+5,52,Female,1,1,1,1,Normal,Normal,Respiratory,2026-06-21 06:10:57
+6,29,Female,0,0,1,1,Normal,Normal,Neurological,2026-06-21 06:10:57
+7,24,Male,0,0,1,0,Normal,Low,Musculoskeletal,2026-06-21 06:10:57
+8,21,Female,0,0,1,0,Normal,Normal,Neurological,2026-06-21 06:10:57
+9,70,Male,1,0,0,0,Normal,High,Infectious Disease,2026-06-21 06:10:57
+10,62,Female,1,0,0,1,High,Normal,Gastrointestinal,2026-06-21 06:10:57
+11,62,Female,0,0,0,0,Low,Normal,Neurological,2026-06-21 06:10:57
+12,38,Female,0,1,1,1,High,High,Respiratory,2026-06-21 06:10:57
+13,38,Male,0,0,1,0,High,Normal,Musculoskeletal,2026-06-21 06:10:57
+14,62,Female,1,1,1,0,Normal,Normal,Infectious Disease,2026-06-21 06:10:57
+15,70,Female,0,0,0,0,Normal,High,Cardiovascular,2026-06-21 06:10:57
+16,43,Male,0,0,1,0,Normal,Normal,Mental Health,2026-06-21 06:10:57
+17,57,Male,0,0,0,0,High,High,Musculoskeletal,2026-06-21 06:10:57
+18,25,Female,0,0,1,1,Normal,Normal,Neurological,2026-06-21 06:10:57
+19,69,Female,0,0,0,0,Normal,High,Cardiovascular,2026-06-21 06:10:57
+20,28,Male,0,0,0,0,Normal,High,Infectious Disease,2026-06-21 06:10:57
+21,77,Male,0,0,0,0,Normal,Normal,Neurological,2026-06-21 06:10:57
+22,20,Female,0,0,1,0,High,Low,Respiratory,2026-06-21 06:10:57
+23,66,Female,1,0,1,1,Normal,Normal,Respiratory,2026-06-21 06:10:57
+24,39,Female,0,0,0,0,Normal,Normal,Genetic/Congenital,2026-06-21 06:10:57
+25,66,Male,0,0,0,0,Normal,Normal,Respiratory,2026-06-21 06:10:57
+26,27,Female,0,0,1,0,Normal,Low,Respiratory,2026-06-21 06:10:57
+27,6,Female,0,0,1,0,Low,Normal,Renal/Urinary,2026-06-21 06:10:57
+28,38,Male,0,0,0,0,High,High,Infectious Disease,2026-06-21 06:10:57
+29,78,Female,1,1,0,1,Normal,Normal,Respiratory,2026-06-21 06:10:57
+30,54,Male,0,0,0,0,Normal,Normal,Respiratory,2026-06-21 06:10:57
+31,48,Female,0,0,0,0,Normal,Low,Neurological,2026-06-21 06:10:57
+32,37,Male,0,0,1,1,Normal,Normal,Respiratory,2026-06-21 06:10:57
+33,42,Male,0,1,0,0,Normal,High,Infectious Disease,2026-06-21 06:10:57
+34,50,Male,0,0,0,0,Normal,Normal,Respiratory,2026-06-21 06:10:57
+35,40,Male,0,0,0,0,Normal,Normal,Respiratory,2026-06-21 06:10:57
+36,5,Female,1,0,0,0,Normal,Low,Dermatological,2026-06-21 06:10:57
+37,78,Male,0,0,1,1,Normal,High,Respiratory,2026-06-21 06:10:57
+38,61,Male,0,0,1,0,High,Normal,Musculoskeletal,2026-06-21 06:10:57
+39,46,Male,0,0,1,0,Normal,Normal,Mental Health,2026-06-21 06:10:57
+40,36,Male,0,0,0,0,Normal,Normal,Respiratory,2026-06-21 06:10:58
+41,34,Male,0,0,0,0,Normal,Normal,Respiratory,2026-06-21 06:10:58
+42,36,Female,0,0,1,0,Normal,High,Mental Health,2026-06-21 06:10:58
+43,27,Male,1,0,0,0,Normal,High,Dermatological,2026-06-21 06:10:58
+44,56,Female,0,1,1,0,Low,Normal,Musculoskeletal,2026-06-21 06:10:58
+45,43,Male,1,0,1,0,High,Normal,Cancer,2026-06-21 06:10:58
+46,78,Male,0,0,0,0,Normal,High,Cardiovascular,2026-06-21 06:10:58
+47,54,Male,0,0,1,0,High,Normal,Musculoskeletal,2026-06-21 06:10:58
+48,21,Male,0,1,1,0,High,Normal,Dermatological,2026-06-21 06:10:58
+49,67,Male,1,0,0,0,Normal,Normal,Musculoskeletal,2026-06-21 06:10:58
+50,11,Female,0,0,1,0,Normal,Normal,Neurological,2026-06-21 06:10:58
+51,47,Female,1,0,1,0,Normal,Low,Musculoskeletal,2026-06-21 06:10:58
+52,38,Male,0,0,1,0,Normal,High,Infectious Disease,2026-06-21 06:10:58
+53,49,Female,0,0,1,0,Normal,Normal,Genetic/Congenital,2026-06-21 06:10:58
+54,52,Male,1,0,1,0,Normal,Normal,Gastrointestinal,2026-06-21 06:10:58
+55,43,Female,0,0,1,0,Normal,High,Neurological,2026-06-21 06:10:58
+56,20,Female,1,0,0,0,Low,Low,Dermatological,2026-06-21 06:10:58
+57,33,Female,0,0,0,0,Normal,Low,Gastrointestinal,2026-06-21 06:10:58
+58,63,Female,0,0,1,0,Low,Normal,Genetic/Congenital,2026-06-21 06:10:58
+59,76,Male,1,1,0,1,High,High,Respiratory,2026-06-21 06:10:58
+60,41,Female,0,0,0,0,Normal,Low,Gastrointestinal,2026-06-21 06:10:58
+61,66,Male,1,1,1,0,High,Normal,Mental Health,2026-06-21 06:10:58
+62,42,Female,1,0,1,0,Low,High,Renal/Urinary,2026-06-21 06:10:58
+63,40,Male,0,0,0,0,Low,Low,Gastrointestinal,2026-06-21 06:10:58
+64,43,Male,0,0,1,1,High,Normal,Respiratory,2026-06-21 06:10:58
+65,28,Female,0,0,1,0,Normal,Normal,Neurological,2026-06-21 06:10:58
+66,78,Male,1,1,0,1,Low,High,Respiratory,2026-06-21 06:10:58
+67,69,Male,0,0,1,0,Normal,Low,Gastrointestinal,2026-06-21 06:10:58
+68,39,Male,0,0,1,0,High,High,Endocrine,2026-06-21 06:10:58
+69,17,Female,0,1,1,1,Normal,High,Respiratory,2026-06-21 06:10:58
+70,31,Female,1,0,1,0,Normal,Normal,Infectious Disease,2026-06-21 06:10:58
+71,53,Male,0,0,1,0,Normal,Normal,Cancer,2026-06-21 06:10:58
+72,63,Female,0,0,1,1,High,High,Respiratory,2026-06-21 06:10:58
+73,25,Male,0,0,0,0,Normal,High,Infectious Disease,2026-06-21 06:10:58
+74,59,Female,0,0,0,0,Normal,Low,Neurological,2026-06-21 06:10:58
+75,40,Male,0,0,0,0,Normal,Normal,Respiratory,2026-06-21 06:10:58
+76,47,Male,0,0,0,0,High,High,Musculoskeletal,2026-06-21 06:10:58
+77,80,Female,0,0,0,0,Normal,High,Cardiovascular,2026-06-21 06:10:58
+78,67,Female,1,1,1,0,Normal,Normal,Neurological,2026-06-21 06:10:58
+79,18,Male,0,1,1,1,Normal,Normal,Respiratory,2026-06-21 06:10:58
+80,35,Male,0,0,1,0,Normal,High,Infectious Disease,2026-06-21 06:10:59
+81,53,Female,1,0,1,0,High,Normal,Neurological,2026-06-21 06:10:59
+82,26,Female,0,0,1,0,High,Normal,Cardiovascular,2026-06-21 06:10:59
+83,57,Female,1,0,0,0,Normal,High,Infectious Disease,2026-06-21 06:10:59
+84,55,Female,0,0,1,1,High,High,Gastrointestinal,2026-06-21 06:10:59
+85,12,Female,0,0,1,0,High,High,Cardiovascular,2026-06-21 06:10:59
+86,85,Male,0,1,1,0,Normal,Normal,Mental Health,2026-06-21 06:10:59
+87,80,Female,0,0,1,0,Low,Normal,Genetic/Congenital,2026-06-21 06:10:59
+88,21,Female,0,1,0,0,Low,Normal,Endocrine,2026-06-21 06:10:59
+89,53,Male,0,1,1,0,Low,Normal,Neurological,2026-06-21 06:10:59
+90,26,Male,0,0,0,0,Normal,High,Infectious Disease,2026-06-21 06:10:59
+91,71,Male,0,0,0,0,Normal,Low,Gastrointestinal,2026-06-21 06:10:59
+92,65,Male,0,0,0,0,High,Normal,Musculoskeletal,2026-06-21 06:10:59
+93,65,Male,1,0,0,1,Normal,Normal,Respiratory,2026-06-21 06:10:59
+94,13,Male,0,0,1,0,High,Low,Musculoskeletal,2026-06-21 06:10:59
+95,58,Male,1,0,1,0,Normal,Normal,Gastrointestinal,2026-06-21 06:10:59
+96,10,Male,1,0,1,0,Normal,Normal,Respiratory,2026-06-21 06:10:59
+97,23,Male,0,0,0,0,High,Normal,Dermatological,2026-06-21 06:10:59
+98,59,Female,1,1,0,0,Normal,High,Cardiovascular,2026-06-21 06:10:59
+99,78,Male,0,0,1,0,High,High,Mental Health,2026-06-21 06:10:59
+100,29,Female,0,0,0,0,High,Normal,Gastrointestinal,2026-06-21 06:10:59
+101,32,Female,1,0,1,0,Normal,High,Renal/Urinary,2026-06-21 06:10:59
+102,76,Female,1,0,1,0,Normal,Low,Cardiovascular,2026-06-21 06:10:59
+103,49,Male,0,0,1,0,High,Normal,Musculoskeletal,2026-06-21 06:10:59
+104,51,Female,0,0,1,1,Normal,Normal,Neurological,2026-06-21 06:10:59
+105,47,Female,1,0,1,0,Normal,High,Renal/Urinary,2026-06-21 06:10:59
+106,45,Male,0,0,0,0,Normal,High,Infectious Disease,2026-06-21 06:10:59
+107,17,Male,1,0,1,0,Normal,Normal,Respiratory,2026-06-21 06:10:59
+108,57,Male,1,0,1,0,Normal,Normal,Gastrointestinal,2026-06-21 06:10:59
+109,54,Female,0,0,1,1,Normal,High,Respiratory,2026-06-21 06:10:59
+110,40,Male,0,0,1,0,Low,High,Infectious Disease,2026-06-21 06:10:59
+111,21,Male,0,0,1,0,Normal,Normal,Cancer,2026-06-21 06:10:59
+112,77,Female,0,0,0,0,Normal,Low,Neurological,2026-06-21 06:10:59
+113,46,Male,1,0,1,0,Normal,Normal,Cardiovascular,2026-06-21 06:10:59
+114,31,Male,0,0,0,0,Normal,Normal,Respiratory,2026-06-21 06:10:59
+115,30,Male,0,0,1,0,Normal,High,Cancer,2026-06-21 06:10:59
+116,50,Female,0,0,1,0,Normal,Normal,Genetic/Congenital,2026-06-21 06:10:59
+117,76,Female,0,0,0,0,Normal,Normal,Cardiovascular,2026-06-21 06:10:59
+118,61,Male,0,0,1,0,Normal,High,Infectious Disease,2026-06-21 06:10:59
+119,70,Male,0,0,0,0,High,High,Musculoskeletal,2026-06-21 06:10:59
+120,61,Female,1,0,1,1,Normal,High,Respiratory,2026-06-21 06:11:00
+121,42,Male,0,0,1,0,Low,Normal,Dermatological,2026-06-21 06:11:00
+122,59,Female,0,0,0,0,High,Normal,Cardiovascular,2026-06-21 06:11:00
+123,66,Male,1,0,1,0,High,Normal,Renal/Urinary,2026-06-21 06:11:00
+124,30,Male,0,0,1,0,Normal,Normal,Cancer,2026-06-21 06:11:00
+125,39,Male,0,0,1,0,Normal,Normal,Dermatological,2026-06-21 06:11:00
+126,27,Male,0,0,1,0,High,High,Musculoskeletal,2026-06-21 06:11:00
+127,75,Male,0,0,1,1,Normal,Normal,Respiratory,2026-06-21 06:11:00
+128,70,Male,0,0,1,1,High,Normal,Respiratory,2026-06-21 06:11:00
+129,57,Female,0,0,1,0,High,Normal,Cardiovascular,2026-06-21 06:11:00
+130,65,Female,0,1,1,0,Normal,Normal,Musculoskeletal,2026-06-21 06:11:00
+131,41,Female,0,1,1,1,Normal,Low,Renal/Urinary,2026-06-21 06:11:00
+132,31,Male,0,0,0,0,High,Normal,Respiratory,2026-06-21 06:11:00
+133,56,Female,0,0,1,0,Normal,Normal,Cardiovascular,2026-06-21 06:11:00
+134,38,Male,0,0,1,0,Normal,Normal,Dermatological,2026-06-21 06:11:00
+135,25,Male,0,0,0,0,Normal,Normal,Respiratory,2026-06-21 06:11:00
+136,6,Male,0,0,1,0,Normal,High,Cancer,2026-06-21 06:11:00
+137,13,Female,0,0,1,0,Normal,High,Cancer,2026-06-21 06:11:00
+138,59,Male,1,0,1,0,Normal,High,Cardiovascular,2026-06-21 06:11:00
+139,25,Male,1,0,1,0,Low,Normal,Respiratory,2026-06-21 06:11:00
+140,56,Male,1,0,1,0,Normal,High,Cardiovascular,2026-06-21 06:11:00
+141,44,Male,0,0,1,0,High,Low,Musculoskeletal,2026-06-21 06:11:00
+142,61,Male,1,1,0,1,Normal,Normal,Respiratory,2026-06-21 06:11:00
+143,71,Female,0,0,0,0,High,Normal,Cardiovascular,2026-06-21 06:11:00
+144,23,Male,0,0,0,0,Normal,High,Infectious Disease,2026-06-21 06:11:00
+145,55,Female,0,0,0,0,High,Normal,Cardiovascular,2026-06-21 06:11:00
+146,63,Female,1,0,1,1,Low,Normal,Respiratory,2026-06-21 06:11:00
+147,22,Female,0,0,1,0,High,Normal,Cardiovascular,2026-06-21 06:11:00
+148,21,Male,0,0,0,0,High,High,Musculoskeletal,2026-06-21 06:11:00
+149,58,Female,0,1,1,1,Normal,Normal,Neurological,2026-06-21 06:11:00
+150,47,Male,1,1,0,1,Low,Normal,Respiratory,2026-06-21 06:11:00
+151,53,Female,0,0,1,0,Normal,Normal,Cardiovascular,2026-06-21 06:11:00
+152,52,Male,0,0,1,1,Low,High,Respiratory,2026-06-21 06:11:00
+153,34,Female,0,0,1,0,Normal,High,Mental Health,2026-06-21 06:11:00

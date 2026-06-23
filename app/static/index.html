@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Treatment Recommender</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1F2421;
+    --ink-soft: #5C6660;
+    --bg: #FAF8F5;
+    --panel: #FFFFFF;
+    --line: #E4DFD6;
+    --teal: #1B4B4F;
+    --teal-soft: #E8EFEE;
+    --clay: #C17A56;
+    --clay-soft: #F6E9E1;
+    --green: #4A7C59;
+    --green-soft: #E9F1EA;
+    --radius: 3px;
+  }
+
+  * { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('bg.jpg');
+  background-repeat: repeat;
+  background-size: 400px auto;
+  opacity: 0.08;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 56px 24px 120px;
+}
+
+header.page-head {
+  background: rgba(250, 248, 245, 0.85);
+  border-radius: 4px;
+  padding: 28px;
+  margin-bottom: 48px;
+  border-bottom: 1px solid var(--line);
+}
+
+  h1 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 32px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+
+  .subhead {
+    color: var(--ink-soft);
+    font-size: 15px;
+    max-width: 46ch;
+  }
+
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin-bottom: 20px;
+  }
+
+  .panel-label {
+    font-family: 'Source Serif 4', serif;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .panel-label .num {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--teal);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 16px;
+  }
+
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field.full { grid-column: 1 / -1; }
+
+  label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-soft);
+  }
+
+  input[type="number"], select {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--bg);
+    color: var(--ink);
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%235C6660'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+  }
+
+  input:focus, select:focus, button:focus-visible, .pill input:focus-visible + .pill-box {
+    outline: 2px solid var(--teal);
+    outline-offset: 1px;
+  }
+
+  .symptom-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .pill {
+    position: relative;
+  }
+  .pill input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .pill-box {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 14px;
+    background: var(--bg);
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .pill input:checked + .pill-box {
+    border-color: var(--teal);
+    background: var(--teal-soft);
+    color: var(--teal);
+    font-weight: 600;
+  }
+  .pill-box .box {
+    width: 16px; height: 16px;
+    border: 1.5px solid var(--ink-soft);
+    border-radius: 3px;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .pill input:checked + .pill-box .box {
+    border-color: var(--teal);
+    background: var(--teal);
+  }
+  .pill input:checked + .pill-box .box::after {
+    content: '';
+    position: absolute;
+    left: 4px; top: 1px;
+    width: 4px; height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  button.primary {
+    width: 100%;
+    background: var(--teal);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    padding: 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 26px;
+    transition: background 0.15s;
+  }
+  button.primary:hover { background: #143C3F; }
+  button.primary:disabled { background: #B8BDB9; cursor: not-allowed; }
+
+  .result-block {
+    display: none;
+  }
+  .result-block.show { display: block; }
+
+  .diagnosis-line {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+  .diagnosis-line .term {
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .diagnosis-line .value {
+    font-family: 'Source Serif 4', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--teal);
+  }
+
+  .treatment-card {
+    background: var(--clay-soft);
+    border-left: 3px solid var(--clay);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    margin-top: 18px;
+  }
+  .treatment-card .term {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--clay);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .treatment-card .name {
+    font-family: 'Source Serif 4', serif;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .beta-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(193,122,86,0.25);
+  }
+  .beta-row svg { flex-shrink: 0; }
+  .beta-caption {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+  .beta-caption strong { color: var(--ink); }
+
+  .rate-section { margin-top: 24px; }
+  .rate-label {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .star-row { display: flex; gap: 6px; }
+  .star-btn {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    border: 1.5px solid var(--line);
+    background: var(--panel);
+    font-size: 16px;
+    cursor: pointer;
+    color: var(--ink-soft);
+    font-weight: 600;
+    transition: all 0.12s;
+  }
+  .star-btn:hover { border-color: var(--teal); color: var(--teal); }
+  .star-btn.selected { background: var(--teal); border-color: var(--teal); color: white; }
+
+  .confirm-msg {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: var(--green-soft);
+    border-radius: var(--radius);
+    color: var(--green);
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .confirm-msg.show { display: flex; }
+
+  .error-msg {
+    display: none;
+    margin-top: 14px;
+    padding: 12px 16px;
+    background: #FBEAEA;
+    border-left: 3px solid #B3433D;
+    border-radius: var(--radius);
+    color: #8C2F2A;
+    font-size: 13.5px;
+  }
+  .error-msg.show { display: block; }
+
+  .reset-link {
+    display: inline-block;
+    margin-top: 28px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    padding: 0;
+  }
+  .reset-link:hover { color: var(--teal); }
+
+  @media (max-width: 520px) {
+    .field-grid { grid-template-columns: 1fr; }
+    .symptom-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="page-head">
+    <h1>Patient intake</h1>
+    <div class="subhead">Fill in the patient's details and symptoms to get a diagnosis prediction and treatment recommendation.</div>
+  </header>
+
+  <!-- STEP 1: INTAKE FORM -->
+  <div class="panel">
+    <div class="panel-label"><span class="num">1</span> Patient details</div>
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="age">Age</label>
+        <input type="number" id="age" min="0" max="120" placeholder="e.g. 34">
+      </div>
+      <div class="field">
+        <label for="gender">Gender</label>
+        <select id="gender">
+          <option value="Female">Female</option>
+          <option value="Male">Male</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="bp">Blood pressure</label>
+        <select id="bp">
+          <option value="Low">Low</option>
+          <option value="Normal" selected>Normal</option>
+          <option value="High">High</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="chol">Cholesterol level</label>
+        <select id="chol">
+          <option value="Low">Low</option>
+          <option value="Normal" selected>Normal</option>
+          <option value="High">High</option>
+        </select>
+      </div>
+
+      <div class="field full">
+        <label>Symptoms present</label>
+        <div class="symptom-row">
+          <label class="pill">
+            <input type="checkbox" id="sym-fever">
+            <span class="pill-box"><span class="box"></span>Fever</span>
+          </label>
+          <label class="pill">
+            <input type="checkbox" id="sym-cough">
+            <span class="pill-box"><span class="box"></span>Cough</span>
+          </label>
+          <label class="pill">
+            <input type="checkbox" id="sym-fatigue">
+            <span class="pill-box"><span class="box"></span>Fatigue</span>
+          </label>
+          <label class="pill">
+            <input type="checkbox" id="sym-breathing">
+            <span class="pill-box"><span class="box"></span>Difficulty breathing</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <button class="primary" id="predict-btn">Get prediction</button>
+    <div class="error-msg" id="predict-error"></div>
+  </div>
+
+  <!-- STEP 2: PREDICTION RESULT -->
+  <div class="panel result-block" id="predict-panel">
+    <div class="panel-label"><span class="num">2</span> Predicted condition</div>
+    <div class="diagnosis-line">
+      <span class="term">Category</span>
+      <span class="value" id="predicted-category">—</span>
+    </div>
+    <button class="primary" id="recommend-btn">Get treatment recommendation</button>
+    <div class="error-msg" id="recommend-error"></div>
+  </div>
+
+  <!-- STEP 3: RECOMMENDATION + RATING -->
+  <div class="panel result-block" id="recommend-panel">
+    <div class="panel-label"><span class="num">3</span> Recommended treatment</div>
+
+    <div class="treatment-card">
+      <div class="term">Suggested plan</div>
+      <div class="name" id="treatment-name">—</div>
+
+      <div class="beta-row">
+        <svg id="beta-curve" width="100" height="56" viewBox="0 0 100 56"></svg>
+        <div class="beta-caption">
+          Confidence distribution for this treatment — updates as doctors submit ratings.
+        </div>
+      </div>
+    </div>
+
+    <div class="rate-section">
+      <div class="rate-label">Rate treatment effectiveness (1–5)</div>
+      <div class="star-row" id="star-row">
+        <button class="star-btn" data-val="1">1</button>
+        <button class="star-btn" data-val="2">2</button>
+        <button class="star-btn" data-val="3">3</button>
+        <button class="star-btn" data-val="4">4</button>
+        <button class="star-btn" data-val="5">5</button>
+      </div>
+      <div class="confirm-msg" id="rate-confirm">
+        <span>✓</span>
+        <span id="rate-confirm-text">Rating saved.</span>
+      </div>
+      <div class="error-msg" id="rate-error"></div>
+    </div>
+
+    <button class="reset-link" id="reset-btn">New patient →</button>
+  </div>
+
+</div>
+
+<script>
+const API = '';
+
+let state = { patientId: null, category: null, recommendationId: null, treatmentId: null };
+
+const $ = (id) => document.getElementById(id);
+
+function showError(el, msg) {
+  el.textContent = msg;
+  el.classList.add('show');
+}
+function clearError(el) {
+  el.classList.remove('show');
+}
+
+// --- STEP 1: Predict ---
+$('predict-btn').addEventListener('click', async () => {
+  clearError($('predict-error'));
+
+  const age = parseInt($('age').value, 10);
+  if (!age || age < 0 || age > 120) {
+    showError($('predict-error'), 'Enter a valid age between 0 and 120.');
+    return;
+  }
+
+  const payload = {
+    age: age,
+    gender: $('gender').value,
+    blood_pressure: $('bp').value,
+    cholesterol_level: $('chol').value,
+    fever: $('sym-fever').checked,
+    cough: $('sym-cough').checked,
+    fatigue: $('sym-fatigue').checked,
+    difficulty_breathing: $('sym-breathing').checked
+  };
+
+  $('predict-btn').disabled = true;
+  $('predict-btn').textContent = 'Predicting…';
+
+  try {
+    const res = await fetch(`${API}/predict`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+
+    if (!res.ok) {
+      showError($('predict-error'), data.error || 'Something went wrong. Please try again.');
+      return;
+    }
+
+    state.patientId = data.patient_id;
+    state.category = data.predicted_category;
+
+    $('predicted-category').textContent = data.predicted_category;
+    $('predict-panel').classList.add('show');
+    $('predict-panel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+  } catch (err) {
+    showError($('predict-error'), 'Could not reach the server. Is the Flask app running?');
+  } finally {
+    $('predict-btn').disabled = false;
+    $('predict-btn').textContent = 'Get prediction';
+  }
+});
+
+// --- STEP 2: Recommend ---
+$('recommend-btn').addEventListener('click', async () => {
+  clearError($('recommend-error'));
+  $('recommend-btn').disabled = true;
+  $('recommend-btn').textContent = 'Finding best treatment…';
+
+  try {
+    const res = await fetch(`${API}/recommend`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ patient_id: state.patientId, condition_category: state.category })
+    });
+    const data = await res.json();
+
+    if (!res.ok) {
+      showError($('recommend-error'), data.error || 'Something went wrong. Please try again.');
+      return;
+    }
+
+    state.recommendationId = data.recommendation_id;
+    state.treatmentId = data.treatment_id;
+
+    $('treatment-name').textContent = data.treatment_name;
+    drawBetaCurve(2, 2); // neutral prior visual until rated
+    $('recommend-panel').classList.add('show');
+    $('recommend-panel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    // reset star state for the new recommendation
+    document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('selected'));
+    $('rate-confirm').classList.remove('show');
+
+  } catch (err) {
+    showError($('recommend-error'), 'Could not reach the server. Is the Flask app running?');
+  } finally {
+    $('recommend-btn').disabled = false;
+    $('recommend-btn').textContent = 'Get treatment recommendation';
+  }
+});
+
+// --- STEP 3: Rate ---
+document.querySelectorAll('.star-btn').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    clearError($('rate-error'));
+    document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+
+    const rating = parseInt(btn.dataset.val, 10);
+
+    try {
+      const res = await fetch(`${API}/rate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ recommendation_id: state.recommendationId, doctor_rating: rating })
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        showError($('rate-error'), data.error || 'Something went wrong. Please try again.');
+        return;
+      }
+
+      drawBetaCurve(data.updated_alpha, data.updated_beta);
+      $('rate-confirm-text').textContent = 'Rating saved.';
+      $('rate-confirm').classList.add('show');
+
+    } catch (err) {
+      showError($('rate-error'), 'Could not reach the server. Is the Flask app running?');
+    }
+  });
+});
+
+// --- Reset ---
+$('reset-btn').addEventListener('click', () => {
+  state = { patientId: null, category: null, recommendationId: null, treatmentId: null };
+  $('predict-panel').classList.remove('show');
+  $('recommend-panel').classList.remove('show');
+  $('age').value = '';
+  document.querySelectorAll('.symptom-row input').forEach(c => c.checked = false);
+  $('gender').value = 'Female';
+  $('bp').value = 'Normal';
+  $('chol').value = 'Normal';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// --- Beta distribution curve (the signature visual element) ---
+function betaPDF(x, a, b) {
+  function logGamma(n) {
+    const g = 7;
+    const c = [0.99999999999980993, 676.5203681218851, -1259.1392167224028,
+      771.32342877765313, -176.61502916214059, 12.507343278686905,
+      -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7];
+    if (n < 0.5) return Math.log(Math.PI / Math.sin(Math.PI * n)) - logGamma(1 - n);
+    n -= 1;
+    let x0 = c[0];
+    const t = n + g + 0.5;
+    for (let i = 1; i < g + 2; i++) x0 += c[i] / (n + i);
+    return 0.5 * Math.log(2 * Math.PI) + (n + 0.5) * Math.log(t) - t + Math.log(x0);
+  }
+  const logB = logGamma(a) + logGamma(b) - logGamma(a + b);
+  return Math.exp((a - 1) * Math.log(x) + (b - 1) * Math.log(1 - x) - logB);
+}
+
+function drawBetaCurve(alpha, beta) {
+  const svg = $('beta-curve');
+  const w = 100, h = 56, pad = 4;
+  let points = [];
+  let maxY = 0;
+  const n = 60;
+  for (let i = 0; i <= n; i++) {
+    const x = Math.max(0.001, Math.min(0.999, i / n));
+    const y = betaPDF(x, alpha, beta);
+    if (isFinite(y)) maxY = Math.max(maxY, y);
+    points.push([x, y]);
+  }
+  maxY = maxY || 1;
+  const path = points.map(([x, y], i) => {
+    const px = pad + x * (w - 2 * pad);
+    const py = h - pad - (isFinite(y) ? y / maxY : 0) * (h - 2 * pad);
+    return `${i === 0 ? 'M' : 'L'}${px.toFixed(1)},${py.toFixed(1)}`;
+  }).join(' ');
+
+  svg.innerHTML = `
+    <line x1="${pad}" y1="${h-pad}" x2="${w-pad}" y2="${h-pad}" stroke="#E4DFD6" stroke-width="1"/>
+    <path d="${path} L${w-pad},${h-pad} L${pad},${h-pad} Z" fill="#C17A56" opacity="0.18"/>
+    <path d="${path}" fill="none" stroke="#C17A56" stroke-width="1.8" stroke-linecap="round"/>
+  `;
+}
+
+// initial neutral curve before any recommendation
+drawBetaCurve(2, 2);
+</script>
+
+</body>
+</html>
