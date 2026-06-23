@@ -1,6 +1,6 @@
 # Personalized Treatment Plan Recommender with Adaptive Learning
 
-A full-stack clinical decision support system that predicts patient condition categories from symptoms and recommends treatments using **Thompson Sampling** — a Bayesian multi-armed bandit algorithm that learns from doctor feedback over time.
+A full-stack clinical decision support system that predicts patient condition categories from symptoms and recommends treatments using **Thompson Sampling** - a Bayesian multi-armed bandit algorithm that learns from doctor feedback over time.
 
 Built as a solo portfolio project across 8 phases, combining machine learning, adaptive algorithms, backend development, and data visualization.
 
@@ -24,13 +24,13 @@ Random Forest Classifier
 Thompson Sampling Bandit
 (recommends best treatment based on prior ratings)
         ↓
-Doctor rates effectiveness (1–5)
+Doctor rates effectiveness (1-5)
         ↓
 Beta distribution updates
-(bandit learns — better treatments get recommended more often)
+(bandit learns - better treatments get recommended more often)
 ```
 
-The key insight: treatments start with equal probability of being recommended. As doctors rate them, the system's confidence in each treatment shifts — good treatments rise, poor ones fall. Over hundreds of patients, the system converges on the most effective treatment per condition category.
+The key insight: treatments start with equal probability of being recommended. As doctors rate them, the system's confidence in each treatment shifts - good treatments rise, poor ones fall. Over hundreds of patients, the system converges on the most effective treatment per condition category.
 
 ---
 
@@ -77,10 +77,10 @@ treatment-recommender/
 ## Key Design Decisions
 
 **Why Thompson Sampling over simpler approaches?**
-Thompson Sampling naturally balances exploration (trying less-tested treatments) and exploitation (recommending proven ones) without any hyperparameter tuning. Each treatment maintains a Beta(α, β) distribution where α tracks successes and β tracks failures. Sampling from these distributions means the system occasionally tries lower-ranked treatments — which is clinically important, since a treatment that works poorly on average might be exactly right for a specific patient profile.
+Thompson Sampling naturally balances exploration (trying less-tested treatments) and exploitation (recommending proven ones) without any hyperparameter tuning. Each treatment maintains a Beta(α, β) distribution where α tracks successes and β tracks failures. Sampling from these distributions means the system occasionally tries lower-ranked treatments - which is clinically important, since a treatment that works poorly on average might be exactly right for a specific patient profile.
 
 **Why 12 condition categories instead of 116 diseases?**
-The raw dataset has 116 disease labels across only 349 rows — an average of 3 examples per disease. Grouping into 12 clinically sensible categories (Respiratory, Cardiovascular, Neurological, etc.) was necessary for the classifier to learn anything meaningful. The tradeoff is acknowledged: the bandit layer operates at the category level, not disease level.
+The raw dataset has 116 disease labels across only 349 rows - an average of 3 examples per disease. Grouping into 12 clinically sensible categories (Respiratory, Cardiovascular, Neurological, etc.) was necessary for the classifier to learn anything meaningful. The tradeoff is acknowledged: the bandit layer operates at the category level, not disease level.
 
 **Classifier performance**
 47% accuracy / 0.39 macro F1 across 12 classes on a 70-sample test set. This is roughly 5.6× better than random guessing (8.3% baseline). The limited feature set (4 binary symptoms + age + gender + blood pressure + cholesterol) constrains accuracy; the project's core contribution is the adaptive recommendation layer, not the classifier.
@@ -173,7 +173,7 @@ recommendations → patient_id, treatment_id, timestamp
 ratings         → recommendation_id, doctor_rating, timestamp
 ```
 
-`alpha` and `beta` in the `treatments` table are live — they update with every `/rate` call, persisting the bandit's learned state across server restarts.
+`alpha` and `beta` in the `treatments` table are live - they update with every `/rate` call, persisting the bandit's learned state across server restarts.
 
 ---
 
@@ -181,10 +181,10 @@ ratings         → recommendation_id, doctor_rating, timestamp
 
 Four visuals built on simulated usage data (150 patients, ~130 ratings):
 
-- **Patient Volume by Condition Category** — distribution of predicted conditions
-- **Treatment Success Rate by Category** — average estimated success rate per category
-- **Average Doctor Rating by Treatment** — which treatments doctors rate highest
-- **Rating Distribution** — breakdown of 1–5 ratings across all recommendations
+- **Patient Volume by Condition Category** - distribution of predicted conditions
+- **Treatment Success Rate by Category** - average estimated success rate per category
+- **Average Doctor Rating by Treatment** - which treatments doctors rate highest
+- **Rating Distribution** - breakdown of 1–5 ratings across all recommendations
 
 ---
 
@@ -192,14 +192,14 @@ Four visuals built on simulated usage data (150 patients, ~130 ratings):
 
 | Phase | Description |
 |---|---|
-| 1 | Exploratory Data Analysis — class distribution, symptom correlations |
-| 2 | Preprocessing — encoding, stratified train/test split |
-| 3 | Random Forest Classifier — 12-class multiclass classification |
-| 4 | Thompson Sampling — TreatmentBandit class with convergence simulation |
-| 5 | SQLite Database — 4-table schema, seeded with 36 treatments |
-| 6 | Flask API — 3 endpoints with input validation and error handling |
-| 7 | Frontend — progressive clinical intake form with live Beta curve |
-| 8 | Power BI — dashboard on simulated usage data |
+| 1 | Exploratory Data Analysis - class distribution, symptom correlations |
+| 2 | Preprocessing - encoding, stratified train/test split |
+| 3 | Random Forest Classifier - 12-class multiclass classification |
+| 4 | Thompson Sampling - TreatmentBandit class with convergence simulation |
+| 5 | SQLite Database - 4-table schema, seeded with 36 treatments |
+| 6 | Flask API - 3 endpoints with input validation and error handling |
+| 7 | Frontend - progressive clinical intake form with live Beta curve |
+| 8 | Power BI - dashboard on simulated usage data |
 
 ---
 
